@@ -1,0 +1,10 @@
+# Local machine artifacts / editor noise
+node_modules/
+*.log
+
+# Headless-browser scratch dirs (created by local smoke testing)
+.headless-profile*/
+.hp*/
+headless-out.txt
+headless-err.txt
+sse-capture.txt

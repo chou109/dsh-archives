@@ -1,0 +1,22 @@
+{
+  "name": "dsh-archives",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Show archived sessions at the bottom of the sidebar, grouped by workspace.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  }
+}
