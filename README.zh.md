@@ -62,10 +62,11 @@ DSH 有个让人头疼的设计：**会话一旦归档，就再也看不到、�
 
 ```
 请帮我把 dsh-archives 插件部署到我的 DeepSeek Harness Web。
-仓库位置：<仓库本地路径，或 GitHub/Gitee 地址>
+仓库位置：https://gitee.com/chill109/dsh-archives.git（中国大陆推荐）
+          或 https://github.com/chou109/dsh-archives.git
 请先阅读仓库里的 README（重点看「如果你是 AI，请读这里」部分），
 然后按其中的一键部署步骤执行，跑完验证清单，
-最后告诉我部署结果。我的 DSH 主目录是 <例如 C:\Users\你的用户名\.dsh>。
+最后告诉我部署结果。我的 DSH 主目录是 C:\Users\你的用户名\.dsh。
 ```
 
 AI 会自己完成：定位 DSH 目录 → 复制插件 → 写入配置 → 重启 → 验证。

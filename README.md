@@ -62,10 +62,11 @@ The "If you are an AI agent, read this" section below is an **executable deploym
 
 ```
 Please deploy the dsh-archives plugin to my DeepSeek Harness Web.
-Repo location: <local repo path, or the GitHub/Gitee URL>
+Repo location: https://gitee.com/chill109/dsh-archives.git (recommended in mainland China)
+               or https://github.com/chou109/dsh-archives.git
 First read the README in the repo (especially the "If you are an AI agent" part),
 then follow its one-command deploy steps, run the verification checklist,
-and tell me the result. My DSH home directory is <e.g. C:\Users\<your user>\.dsh>.
+and tell me the result. My DSH home directory is C:\Users\<your user>\.dsh.
 ```
 
 The AI will do it all: locate the DSH directory → copy the plugin → write the config → restart → verify.
