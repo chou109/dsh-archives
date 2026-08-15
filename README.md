@@ -36,7 +36,12 @@ DSH has a frustrating design: **once a session is archived, there is no way to v
 
 Prerequisite: a machine with DSH installed and `dsh web` running.
 
-1. **Get the plugin**: clone or download this repo (Gitee mirror recommended in mainland China); you get the `dsh-archives` folder
+1. **Get the plugin**: clone or download this repo (Gitee mirror recommended in mainland China):
+   ```bash
+   git clone https://gitee.com/chill109/dsh-archives.git    # mainland China, faster
+   git clone https://github.com/chou109/dsh-archives.git    # international mirror
+   ```
+   You get the `dsh-archives` folder
 2. **Copy it into DSH's plugin directory** (note: `profiles/node_modules`, **not** under `profiles/web`):
    - Windows: `copy /y dsh-archives C:\Users\<your user>\.dsh\profiles\node_modules\`
    - macOS / Linux: `cp -r dsh-archives "$HOME/.dsh/profiles/node_modules/"`
@@ -95,6 +100,8 @@ A DSH **dual-half client plugin** — no build step, no third-party runtime depe
 | `docs/screenshot_*.png` | README screenshots |
 
 ### 1. Deploy
+
+> **Get the repo** (if not already local): `git clone https://gitee.com/chill109/dsh-archives.git` (recommended in mainland China) or `git clone https://github.com/chou109/dsh-archives.git`, then `cd dsh-archives` before running the steps below.
 
 **TL;DR — one command (Linux / macOS bash):**
 

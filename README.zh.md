@@ -36,7 +36,12 @@ DSH 有个让人头疼的设计：**会话一旦归档，就再也看不到、�
 
 前提：你有一台装好 DSH 的电脑，`dsh web` 能正常打开。
 
-1. **拿到插件**：克隆或下载本仓库（国内推荐 Gitee 镜像），得到 `dsh-archives` 文件夹
+1. **拿到插件**：克隆或下载本仓库（国内推荐 Gitee 镜像）：
+   ```bash
+   git clone https://gitee.com/chill109/dsh-archives.git    # 中国大陆，更快
+   git clone https://github.com/chou109/dsh-archives.git    # 国际镜像
+   ```
+   得到 `dsh-archives` 文件夹
 2. **复制到 DSH 插件目录**（注意：是 `profiles/node_modules`，不是 `profiles/web` 下）：
    - Windows：`copy /y dsh-archives C:\Users\<你的用户名>\.dsh\profiles\node_modules\`
    - macOS / Linux：`cp -r dsh-archives "$HOME/.dsh/profiles/node_modules/"`
@@ -95,6 +100,8 @@ DSH **双 half** 客户端插件包：无构建步骤、无第三方运行时依
 | `docs/screenshot_*.png` | README 截图 |
 
 ### 1. 部署
+
+> **获取仓库**（若本地还没有）：`git clone https://gitee.com/chill109/dsh-archives.git`（中国大陆推荐）或 `git clone https://github.com/chou109/dsh-archives.git`，然后 `cd dsh-archives` 再执行下面步骤。
 
 **TL;DR —— 一条命令（Linux / macOS bash）：**
 
