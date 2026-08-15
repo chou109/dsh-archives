@@ -66,7 +66,7 @@ Repo location: https://gitee.com/chill109/dsh-archives.git (recommended in mainl
                or https://github.com/chou109/dsh-archives.git
 First read the README in the repo (especially the "If you are an AI agent" part),
 then follow its one-command deploy steps, run the verification checklist,
-and tell me the result. My DSH home directory is C:\Users\<your user>\.dsh.
+and tell me the result. Locate the DSH home directory yourself ($DSH_HOME env var, default ~/.dsh).
 ```
 
 The AI will do it all: locate the DSH directory → copy the plugin → write the config → restart → verify.
