@@ -4,6 +4,11 @@
 
 **DSH Web 侧边栏底部的归档会话抽屉** —— 按工作区分组折叠，一键恢复并打开、复制为新会话或移回侧边栏。
 
+**仓库镜像**
+
+- GitHub：<https://github.com/chou109/dsh-archives>
+- Gitee（中国大陆仓库，国内访问更快）：<https://gitee.com/chill109/dsh-archives>
+
 ---
 
 ## 👤 如果你是人类，请看这里

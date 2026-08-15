@@ -4,6 +4,11 @@ English | [中文](README.zh.md)
 
 **Archived-session drawer at the bottom of the DSH web sidebar** — grouped by workspace, one-click restore & open, fork, or unarchive.
 
+**Repository mirrors**
+
+- GitHub: <https://github.com/chou109/dsh-archives>
+- Gitee (mainland-China mirror — faster access there): <https://gitee.com/chill109/dsh-archives>
+
 ---
 
 ## 👤 If you are a human, read this
