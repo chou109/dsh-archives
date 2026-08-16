@@ -42,10 +42,17 @@ Prerequisite: a machine with DSH installed and `dsh web` running.
    git clone https://github.com/chou109/dsh-archives.git    # international mirror
    ```
    You get the `dsh-archives` folder
-2. **Copy it into DSH's plugin directory** (note: `profiles/node_modules`, **not** under `profiles/web`):
-   - Windows: `copy /y dsh-archives C:\Users\<your user>\.dsh\profiles\node_modules\`
-   - macOS / Linux: `cp -r dsh-archives "$HOME/.dsh/profiles/node_modules/"`
-3. **Enable it**: edit `C:\Users\<your user>\.dsh\profiles\web\cordis.patch.yml` and append:
+2. **Copy it into DSH's plugin directory** (note: `profiles/node_modules`, **not** under `profiles/web`; paths resolve via `$DSH_HOME`, default `~/.dsh`):
+   - Windows (PowerShell):
+     ```powershell
+     $dsh = if ($env:DSH_HOME) { $env:DSH_HOME } else { "$env:USERPROFILE\.dsh" }
+     Copy-Item -Recurse .\dsh-archives "$dsh\profiles\node_modules\"
+     ```
+   - macOS / Linux:
+     ```bash
+     cp -r dsh-archives "${DSH_HOME:-$HOME/.dsh}/profiles/node_modules/"
+     ```
+3. **Enable it**: edit `$DSH_HOME/profiles/web/cordis.patch.yml` (default `~/.dsh/profiles/web/cordis.patch.yml` when unset) and append:
    ```yaml
    - insert:
        - id: archives
@@ -53,8 +60,6 @@ Prerequisite: a machine with DSH installed and `dsh web` running.
    ```
 4. **Restart**: stop the running `dsh web`, run `dsh web` again, open `http://127.0.0.1:3080`
 5. **Confirm**: the "Archived (n)" button appears at the sidebar foot. If you have never archived a session, the button stays hidden — that is normal; archive one session first to try it
-
-> If `$DSH_HOME` was customized, replace `C:\Users\<your user>\.dsh` with your actual DSH home directory.
 
 ### Option 2: Let an AI deploy it for you
 
@@ -135,7 +140,7 @@ Add-Content "$dsh\profiles\web\cordis.patch.yml" @"
 
 **Full procedure (exact paths):**
 
-1. **Locate DSH home**: `$DSH_HOME` (default `~/.dsh`, e.g. `C:\Users\<user>\.dsh` on Windows).
+1. **Locate DSH home**: `$DSH_HOME` (default `~/.dsh` when unset; `%USERPROFILE%\.dsh` on Windows).
 2. **Copy the plugin** into the dependency directory. Note the `web` profile's deps live **one level above** the profile dir (`$DSH_HOME/profiles/node_modules/`, flat hoisted layout), not inside `profiles/web/node_modules`:
    ```bash
    cp -r dsh-archives "$DSH_HOME/profiles/node_modules/"
@@ -232,7 +237,7 @@ It uses the registry's own write path (serialized on its operation tail), exactl
 ### 7. Testing
 
 ```bash
-node tests/smoke-test.cjs   # client smoke test; needs real React from a DSH profile — set DSH_PROFILE_NODE_MODULES
+node tests/smoke-test.cjs   # client smoke test; react resolves via $DSH_HOME/profiles/node_modules by default, override with DSH_PROFILE_NODE_MODULES
 node tests/host-test.mjs    # host smoke test; no external dependencies
 ```
 

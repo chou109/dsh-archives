@@ -5,14 +5,19 @@
 //    profile's node_modules).
 //
 // The bundle under test is this repo's own lib/client.js. React / react-dom
-// come from a DSH profile; point DSH_PROFILE_NODE_MODULES at the profile's
-// node_modules when it differs from the default below.
+// come from a DSH profile's node_modules, resolved via $DSH_HOME (default
+// ~/.dsh); override with DSH_PROFILE_NODE_MODULES to point elsewhere.
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 
+const dshHome =
+  process.env.DSH_HOME ||
+  (process.platform === "win32"
+    ? path.join(process.env.USERPROFILE || process.env.HOME || "", ".dsh")
+    : path.join(process.env.HOME || "", ".dsh"));
 const profileModules =
-  process.env.DSH_PROFILE_NODE_MODULES || "C:/Users/周超/.dsh/profiles/node_modules";
+  process.env.DSH_PROFILE_NODE_MODULES || path.join(dshHome, "profiles", "node_modules");
 const bundlePath = path.join(__dirname, "..", "lib", "client.js");
 const bundle = fs.readFileSync(bundlePath, "utf8");
 

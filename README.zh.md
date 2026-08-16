@@ -42,10 +42,17 @@ DSH 有个让人头疼的设计：**会话一旦归档，就再也看不到、�
    git clone https://github.com/chou109/dsh-archives.git    # 国际镜像
    ```
    得到 `dsh-archives` 文件夹
-2. **复制到 DSH 插件目录**（注意：是 `profiles/node_modules`，不是 `profiles/web` 下）：
-   - Windows：`copy /y dsh-archives C:\Users\<你的用户名>\.dsh\profiles\node_modules\`
-   - macOS / Linux：`cp -r dsh-archives "$HOME/.dsh/profiles/node_modules/"`
-3. **启用插件**：编辑 `C:\Users\<你的用户名>\.dsh\profiles\web\cordis.patch.yml`，在末尾追加：
+2. **复制到 DSH 插件目录**（注意：是 `profiles/node_modules`，不是 `profiles/web` 下；路径按 `$DSH_HOME` 解析，未设置时默认 `~/.dsh`）：
+   - Windows（PowerShell）：
+     ```powershell
+     $dsh = if ($env:DSH_HOME) { $env:DSH_HOME } else { "$env:USERPROFILE\.dsh" }
+     Copy-Item -Recurse .\dsh-archives "$dsh\profiles\node_modules\"
+     ```
+   - macOS / Linux：
+     ```bash
+     cp -r dsh-archives "${DSH_HOME:-$HOME/.dsh}/profiles/node_modules/"
+     ```
+3. **启用插件**：编辑 `$DSH_HOME/profiles/web/cordis.patch.yml`（未设置时默认 `~/.dsh/profiles/web/cordis.patch.yml`），在末尾追加：
    ```yaml
    - insert:
        - id: archives
@@ -53,8 +60,6 @@ DSH 有个让人头疼的设计：**会话一旦归档，就再也看不到、�
    ```
 4. **重启**：停掉正在运行的 `dsh web`，重新执行 `dsh web`，浏览器打开 `http://127.0.0.1:3080`
 5. **确认成功**：侧边栏底部出现「已归档 (n)」按钮。如果你还没有归档过任何会话，按钮不会显示——这是正常的，先归档一个会话试试
-
-> 如果 `$DSH_HOME` 被改过，把上面的 `C:\Users\<你的用户名>\.dsh` 换成你实际的 DSH 主目录。
 
 ### 方式二：让 AI 帮你部署
 
@@ -135,7 +140,7 @@ Add-Content "$dsh\profiles\web\cordis.patch.yml" @"
 
 **完整步骤（精确路径）：**
 
-1. **定位 DSH 主目录**：`$DSH_HOME`（默认 `~/.dsh`，Windows 如 `C:\Users\<用户>\.dsh`）。
+1. **定位 DSH 主目录**：`$DSH_HOME`（未设置时默认 `~/.dsh`，Windows 为 `%USERPROFILE%\.dsh`）。
 2. **复制插件**到依赖目录。注意 `web` profile 的依赖在**上级目录**（`$DSH_HOME/profiles/node_modules/`，扁平 hoisted 布局），不是 `profiles/web/node_modules`：
    ```bash
    cp -r dsh-archives "$DSH_HOME/profiles/node_modules/"
@@ -234,7 +239,7 @@ POST /archives/unarchive {sessionId}
 ### 7. 测试
 
 ```bash
-node tests/smoke-test.cjs   # client 冒烟测试；需要 DSH profile 里的真实 react —— 设置 DSH_PROFILE_NODE_MODULES
+node tests/smoke-test.cjs   # client 冒烟测试；react 默认按 $DSH_HOME/profiles/node_modules 解析，可用 DSH_PROFILE_NODE_MODULES 覆盖
 node tests/host-test.mjs    # host 冒烟测试；无外部依赖
 ```
 
